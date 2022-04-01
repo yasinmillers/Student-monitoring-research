@@ -39,7 +39,31 @@ if(isset($_REQUEST["err"]))
 echo $msg;
 }
 ?>
+<?php
 
+session_start ();
+include("connect.php"); 
+
+if(isset($_REQUEST['sub']))
+{
+$a = $_REQUEST['name'];
+$b = $_REQUEST['password'];
+
+$res = mysqli_query($cser,"select* from students where name='$a'and password='$b'");
+$result=mysqli_fetch_array($res);
+if($result)
+{
+	
+	$_SESSION["login"]="1";
+	header("location:index.php");
+}
+else	
+{
+	header("location:login.php?err=1");
+	
+}
+}
+?>
 </p>
     </form>
 </main>

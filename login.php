@@ -50,7 +50,7 @@ else
             <input type="password" name="password" id="password">
         </div>
         <section>
-            <button type="submit">Login</button>
+            <button type="submit" name="sub">Login</button>
             <a href="registerstudent.php">Register as Student</a>
         </section>
 

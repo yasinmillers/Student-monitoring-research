@@ -43,7 +43,7 @@ else
         <h1>Login</h1>
         <div>
             <label for="username">Email:</label>
-            <input type="text" name="username" id="username">
+            <input type="text" name="email" id="email">
         </div>
         <div>
             <label for="password">Password:</label>

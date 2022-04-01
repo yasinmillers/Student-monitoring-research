@@ -16,7 +16,7 @@
     <form action="login.php" method="post">
         <h1>Login</h1>
         <div>
-            <label for="username">Username:</label>
+            <label for="username">Email:</label>
             <input type="text" name="username" id="username">
         </div>
         <div>

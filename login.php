@@ -10,7 +10,7 @@ include("connect.php");
 
 if ( !isset($_POST['email'], $_POST['password']) ) {
 	// Could not get the data that should have been sent.
-	exit('Please fill both the username and password fields!');
+	exit('Please fill both the email and password fields!');
 }
 // Prepare our SQL, preparing the SQL statement will prevent SQL injection.
 if ($stmt = $con->prepare('SELECT id, password FROM accounts WHERE username = ?')) {
@@ -54,10 +54,10 @@ if ($stmt = $con->prepare('SELECT id, password FROM accounts WHERE username = ?'
 </head>
 <body>
 <main>
-    <form action="login.php" method="POST">
+    <form action="login.php" method="post">
         <h1>Login</h1>
         <div>
-            <label for="username">Email:</label>
+            <label for="email">Email:</label>
             <input type="text" name="email" id="email">
         </div>
         <div>

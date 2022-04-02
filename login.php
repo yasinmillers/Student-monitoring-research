@@ -8,21 +8,19 @@
 session_start ();
 include("connect.php"); 
 
-if ( !isset($_POST['email'], $_POST['password']) ) {
-	// Could not get the data that should have been sent.
-	exit('Please fill both the email and password fields!');
-}
-// Prepare our SQL, preparing the SQL statement will prevent SQL injection.
-if ($stmt = $con->prepare('SELECT id, password FROM accounts WHERE username = ?')) {
-	// Bind parameters (s = string, i = int, b = blob, etc), in our case the username is a string so we use "s"
-	$stmt->bind_param('s', $_POST['email']);
-	$stmt->execute();
-	// Store the result so we can check if the account exists in the database.
-	$stmt->store_result();
 
-
-	$stmt->close();
+if(isset($_REQUEST["err"]))
+	$msg="Invalid username or Password";
+?>
+<p style="color:red;">
+<?php if(isset($msg))
+{
+	
+echo $msg;
 }
+?>
+
+</p>
 // if(isset($_REQUEST['sub']))
 // {
 // $a = $_REQUEST['email'];
@@ -65,23 +63,10 @@ if ($stmt = $con->prepare('SELECT id, password FROM accounts WHERE username = ?'
             <input type="password" name="password" id="password">
         </div>
         <section>
-            <button type="submit" name="sub">Login</button>
+            <button type="submit" name="login">Login</button>
             <a href="registerstudent.php">Register as Student</a>
         </section>
 
-        <?php 
-if(isset($_REQUEST["err"]))
-	$msg="Invalid username or Password";
-?>
-<p style="color:red;">
-<?php if(isset($msg))
-{
-	
-echo $msg;
-}
-?>
-
-</p>
     </form>
 </main>
 </body>

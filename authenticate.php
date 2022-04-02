@@ -22,12 +22,7 @@ if ($stmt = $conn->prepare('SELECT id, password FROM students WHERE email = ?'))
         // Note: remember to use password_hash in your registration file to store the hashed passwords.
         if (md5(($_POST['password'])==$password)) {
             // Verification success! User has logged-in!
-            // Create sessions, so we know the user is logged in, they basically act like cookies but remember the data on the server.
-            session_regenerate_id();
-            $_SESSION['loggedin'] = TRUE;
-            $_SESSION['name'] = $_POST['name'];
-            $_SESSION['id'] = $id;
-            echo 'Welcome ' . $_SESSION['name'] . '!';
+            	header("location:App/welcome.php");
         } else {
             // Incorrect password
             echo 'Incorrect pass ';

@@ -8,9 +8,20 @@
 session_start ();
 include("connect.php"); 
 
-if ( !isset($_POST['username'], $_POST['password']) ) {
+if ( !isset($_POST['email'], $_POST['password']) ) {
 	// Could not get the data that should have been sent.
 	exit('Please fill both the username and password fields!');
+}
+// Prepare our SQL, preparing the SQL statement will prevent SQL injection.
+if ($stmt = $con->prepare('SELECT id, password FROM accounts WHERE username = ?')) {
+	// Bind parameters (s = string, i = int, b = blob, etc), in our case the username is a string so we use "s"
+	$stmt->bind_param('s', $_POST['email']);
+	$stmt->execute();
+	// Store the result so we can check if the account exists in the database.
+	$stmt->store_result();
+
+
+	$stmt->close();
 }
 // if(isset($_REQUEST['sub']))
 // {

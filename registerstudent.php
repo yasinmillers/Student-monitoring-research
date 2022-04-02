@@ -32,7 +32,7 @@ $cpassword_error = "Password and Confirm Password doesn't match";
 }
 if (!$error) {
 if(mysqli_query($conn, "INSERT INTO students(name,regno,program, email, mobile ,password) VALUES('" . $name . "', '" . $regno . "','" . $program . "','" . $email . "', '" . $mobile . "', '" . md5($password) . "')")) {
-header("location: registerstudent.php");
+header("location: login.php");
 exit();
 } else {
 echo "Error: " . $sql . "" . mysqli_error($conn);
@@ -45,7 +45,7 @@ mysqli_close($conn);
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Simple Registration Form in PHP with Validation | Tutsmake.com</title>
+<title>register student</title>
 <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>

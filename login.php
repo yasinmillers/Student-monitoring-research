@@ -5,11 +5,11 @@
 
 
 <?php
-session_start ();
+
 include("connect.php"); 
 
 
-if(isset($_REQUEST["err"]))
+if(isset($_POST["err"]))
 	$msg="Invalid username or Password";
 ?>
 <p style="color:red;">
@@ -22,16 +22,17 @@ echo $msg;
 
 </p>
 <?php
-if(isset($_REQUEST['sub']))
+if(isset($_POST['sub']))
  {
- $a = $_REQUEST['email'];
- $b = $_REQUEST['password'];
+ $a = $_POST['email'];
+ $b = $_POST['password'];
+if(!empty($a) && !empty($b) ){
 
- $res = mysqli_query($cser,"select* from students where email='$a'and password='$b'");
+ $res = mysqli_query($cser,"select* from students where email='$a'and password='$b' limit 1");
  $result=mysqli_fetch_array($res);
  if($result)
  {
-		$_SESSION["login"]="1";
+	
  	header("location:index.php");
  }
  else	
@@ -39,6 +40,8 @@ if(isset($_REQUEST['sub']))
  	header("location:login.php?err=1");
 	
  } }
+
+}
 ?>
 
 <!DOCTYPE html>
@@ -51,7 +54,7 @@ if(isset($_REQUEST['sub']))
 </head>
 <body>
 <main>
-    <form action="login.php" method="post">
+    <form action="login.php" method="POST">
         <h1>Login</h1>
         <div>
             <label for="email">Email:</label>
